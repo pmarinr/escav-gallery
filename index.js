@@ -10,6 +10,7 @@ const routes = require('./routes/routes');
 
 // use the express-static middleware
 app.use(express.static("public"))
+app.use(express.json());
 app.use('/api', routes)
 // define the first route
 app.get("/", function (req, res) {
