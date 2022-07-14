@@ -6,10 +6,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
 const app = express();
+const routes = require('./routes/routes');
 
 // use the express-static middleware
 app.use(express.static("public"))
-
+app.use('/api', routes)
 // define the first route
 app.get("/", function (req, res) {
   res.send("<h1>Hello World!</h1>")
@@ -17,7 +18,7 @@ app.get("/", function (req, res) {
 
 // start the server listening for requests
 app.listen(port, 
-	() => console.log("Server is running..."));
+	() => console.log(`Server is running at port ${port}`));
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const database = mongoose.connection
